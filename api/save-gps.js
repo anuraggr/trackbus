@@ -1,5 +1,20 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import { MongoClient } from 'mongodb';
+
+// MongoDB connection string
+const uri = process.env.MONGODB_URI; // Store this in Vercel environment variables
+let client;
+let clientPromise;
+
+if (!uri) {
+  throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
+}
+
+// Create a MongoDB client and connect
+client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+clientPromise = client.connect();
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
@@ -9,30 +24,22 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Missing required parameters' });
     }
 
-    // Path to the JSON file (relative to Vercel's deployment)
-    const jsonFilePath = path.join(process.cwd(), 'data', 'busCoordinates.json');
-
-    let data;
     try {
-      const fileContents = await fs.readFile(jsonFilePath, 'utf8');
-      data = JSON.parse(fileContents);
-    } catch (error) {
-      data = {};
-    }
+      const client = await clientPromise;
+      const db = client.db('trackbus'); // Replace with your MongoDB database name
+      const collection = db.collection('buses'); // Replace with your collection name
 
-    // Update the bus data
-    data[bus_id] = {
-      lat: parseFloat(lat),
-      lng: parseFloat(lon),
-      accuracy: parseFloat(acc)
-    };
+      // Update or insert bus data
+      await collection.updateOne(
+        { bus_id: bus_id }, // Filter by bus_id
+        { $set: { lat: parseFloat(lat), lng: parseFloat(lon), accuracy: parseFloat(acc) } }, // Set new values
+        { upsert: true } // If the bus_id doesn't exist, insert a new document
+      );
 
-    // Save the updated data back to the file
-    try {
-      await fs.writeFile(jsonFilePath, JSON.stringify(data, null, 2), 'utf8');
       return res.status(200).json({ message: 'GPS data saved successfully' });
     } catch (error) {
-      return res.status(500).json({ error: 'Failed to write data' });
+      console.error('Failed to save data:', error);
+      return res.status(500).json({ error: 'Failed to save data' });
     }
   } else {
     res.setHeader('Allow', ['GET']);
