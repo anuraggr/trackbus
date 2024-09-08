@@ -1,0 +1,6 @@
+{
+    "bus1": { "lat": 51.505, "lng": -0.09, "accuracy": 10 },
+    "bus2": { "lat": 51.515, "lng": -0.1, "accuracy": 10.0 },
+    "bus3": { "lat": 51.525, "lng": -0.11, "accuracy": 2.5 }
+  }
+  
