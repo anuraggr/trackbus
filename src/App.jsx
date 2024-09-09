@@ -147,18 +147,25 @@ function App() {
         </div>
 
         {/* Right Side: Bus Information */}
-        <div className="right-side">
-          <h2>Bus Information</h2>
-          {busInfo ? (
-            <div className="bus-info">
-              <p><strong>From:</strong> {busInfo.From}</p>
-              <p><strong>To:</strong> {busInfo.to}</p>
-              <p><strong>Departure:</strong> {busInfo.Departure}</p>
-            </div>
-          ) : (
-            <p>Select a bus to see details.</p>
-          )}
+       <div className="right-side">
+  {selectedBus ? (
+    <>
+      <h2>Bus Information</h2>
+      {busInfo ? (
+        <div className="bus-info">
+          <p><strong>From:</strong> {busInfo.From}</p>
+          <p><strong>To:</strong> {busInfo.To}</p>
+          <p><strong>Departure:</strong> {busInfo.Departure}</p>
         </div>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </>
+  ) : (
+    <p>Select a bus to see details.</p>
+  )}
+</div>
+
       </div>
     </div>
   );
