@@ -40,3 +40,36 @@
 .read-the-docs {
   color: #888;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.left-side {
+  flex: 2;
+}
+
+.right-side {
+  flex: 1;
+  padding-left: 20px;
+  background-color: #f9f9f9;
+  border-left: 1px solid #ddd;
+  padding: 20px;
+}
+
+.bus-info p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+
