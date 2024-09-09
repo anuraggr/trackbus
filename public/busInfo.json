@@ -1,1 +1,6 @@
-{}
+{
+    "bus1": { "From": "Sitapura", "to": "Sindhi Camp", "Departure": "8 AM" },
+    "bus2": { "From": "Bhakrota", "to": "Sindhi Camp", "Departure": "9 AM" },
+    "bus3": { "From": "Jagathpura", "to": "Sindhi Camp", "Departure": "10 AM" }
+}
+  
