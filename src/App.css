@@ -37,28 +37,30 @@
   padding: 2em;
 }
 
+/* Main content container */
 .main-content {
   display: flex;
+  justify-content: center;
   align-items: flex-start;
-  gap: 20px; /* Space between map and right-side info */
+  gap: 20px; /* Space between map and info */
 }
 
+/* Left side for map and bus selector */
 .left-side {
-  flex: 2; /* Map takes up most space */
-}
-
-.right-side {
-  flex: 1; /* Smaller width for right-side info */
-  padding: 20px;
-  background-color: #f9f9f9;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.map-container {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  height: 500px; /* Fixed height for the map */
 }
 
+/* Map container to control its height */
+.map-container {
+  height: 500px;
+  width: 100%;
+  position: relative;
+}
+
+/* Button styling */
 .refresh-button {
   position: absolute;
   top: 10px;
@@ -70,4 +72,24 @@
   border-radius: 5px;
   cursor: pointer;
   z-index: 1000;
+}
+
+/* Right side for bus info */
+.right-side {
+  flex: 1;
+  padding: 1em;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bus-info {
+  margin: 0;
+}
+
+/* Ensure the map and right-side are not shifted */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
