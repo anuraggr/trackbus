@@ -10,6 +10,7 @@ import busIcon from './assets/busicon-1.png'; // Import custom bus icon
 function App() {
   const [selectedBus, setSelectedBus] = useState('');
   const [busCoords, setBusCoords] = useState(null);
+  const [busInfo, setBusInfo] = useState(null); // State for bus info
   const mapRef = useRef(); // Reference to the map
 
   // Create custom bus marker icon
@@ -38,8 +39,21 @@ function App() {
     }
   };
 
+  // Function to fetch bus info
+  const fetchBusInfo = () => {
+    if (selectedBus) {
+      fetch('/busInfo.json')
+        .then((response) => response.json())
+        .then((data) => {
+          setBusInfo(data[selectedBus]);
+        })
+        .catch((error) => console.error('Error fetching bus info:', error));
+    }
+  };
+
   useEffect(() => {
     fetchCoordinates(); // Fetch coordinates on bus selection
+    fetchBusInfo(); // Fetch bus info on bus selection
   }, [selectedBus]);
 
   const handleBusChange = (e) => {
@@ -51,82 +65,102 @@ function App() {
   };
 
   return (
-    <>
+    <div className="container">
       <div>
         <a href="https://www.sih.gov.in/" target="_blank">
           <img src={busIcon} className="logo bus" alt="Bus logo" />
         </a>
-        
       </div>
+
       <h1>Track Your Bus</h1>
-      <div className="card">
-        <label htmlFor="busSelect">Choose a bus:</label>
-        <select
-          id="busSelect"
-          value={selectedBus}
-          onChange={handleBusChange}
-        >
-          <option value="">-- Select a bus --</option>
-          <option value="bus1">Bus 1</option>
-          <option value="bus2">Bus 2</option>
-          <option value="bus3">Bus 3</option>
-        </select>
-      </div>
 
-      {busCoords && (
-        <div style={{ height: '500px', width: '100%', position: 'relative' }}>
-          <MapContainer
-            center={[busCoords.lat, busCoords.lng]}
-            zoom={13}
-            style={{ height: '100%', width: '100%' }}
-            ref={mapRef} // Attach the map reference here
-          >
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            />
-            
-            {/* Marker for the bus */}
-            <Marker
-              position={[busCoords.lat, busCoords.lng]}
-              icon={busMarkerIcon} // Apply custom bus icon
+      <div className="main-content">
+        {/* Left Side: Bus Selector and Map */}
+        <div className="left-side">
+          <div className="card">
+            <label htmlFor="busSelect">Choose a bus:</label>
+            <select
+              id="busSelect"
+              value={selectedBus}
+              onChange={handleBusChange}
             >
-              <Popup>
-                {`Bus is here: ${busCoords.lat}, ${busCoords.lng}`}
-              </Popup>
-            </Marker>
+              <option value="">-- Select a bus --</option>
+              <option value="bus1">Bus 1</option>
+              <option value="bus2">Bus 2</option>
+              <option value="bus3">Bus 3</option>
+            </select>
+          </div>
 
-            {/* Circle for accuracy radius */}
-            {busCoords.accuracy && (
-              <Circle
+          {busCoords && (
+            <div style={{ height: '500px', width: '100%', position: 'relative' }}>
+              <MapContainer
                 center={[busCoords.lat, busCoords.lng]}
-                radius={busCoords.accuracy} // Radius in meters
-                pathOptions={{ color: 'lightblue', fillColor: 'lightblue', fillOpacity: 0.2 }}
-              />
-            )}
-          </MapContainer>
+                zoom={13}
+                style={{ height: '100%', width: '100%' }}
+                ref={mapRef} // Attach the map reference here
+              >
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
 
-          {/* Refresh Button near the map */}
-          <button
-            style={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-              padding: '10px 20px',
-              backgroundColor: '#007bff',
-              color: 'white',
-              border: 'none',
-              borderRadius: '5px',
-              cursor: 'pointer',
-              zIndex: 1000
-            }}
-            onClick={handleRefreshClick}
-          >
-            Refresh Coordinates
-          </button>
+                {/* Marker for the bus */}
+                <Marker
+                  position={[busCoords.lat, busCoords.lng]}
+                  icon={busMarkerIcon} // Apply custom bus icon
+                >
+                  <Popup>
+                    {`Bus is here: ${busCoords.lat}, ${busCoords.lng}`}
+                  </Popup>
+                </Marker>
+
+                {/* Circle for accuracy radius */}
+                {busCoords.accuracy && (
+                  <Circle
+                    center={[busCoords.lat, busCoords.lng]}
+                    radius={busCoords.accuracy} // Radius in meters
+                    pathOptions={{ color: 'lightblue', fillColor: 'lightblue', fillOpacity: 0.2 }}
+                  />
+                )}
+              </MapContainer>
+
+              {/* Refresh Button near the map */}
+              <button
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  padding: '10px 20px',
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                  zIndex: 1000
+                }}
+                onClick={handleRefreshClick}
+              >
+                Refresh Coordinates
+              </button>
+            </div>
+          )}
         </div>
-      )}
-    </>
+
+        {/* Right Side: Bus Information */}
+        <div className="right-side">
+          <h2>Bus Information</h2>
+          {busInfo ? (
+            <div className="bus-info">
+              <p><strong>From:</strong> {busInfo.From}</p>
+              <p><strong>To:</strong> {busInfo.to}</p>
+              <p><strong>Departure:</strong> {busInfo.Departure}</p>
+            </div>
+          ) : (
+            <p>Select a bus to see details.</p>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
 
