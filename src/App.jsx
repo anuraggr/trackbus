@@ -67,7 +67,7 @@ function App() {
   return (
     <div className="container">
       <div>
-        <a href="https://www.sih.gov.in/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.sih.gov.in/" target="_blank">
           <img src={busIcon} className="logo bus" alt="Bus logo" />
         </a>
       </div>
@@ -92,7 +92,7 @@ function App() {
           </div>
 
           {busCoords && (
-            <div className="map-container">
+            <div style={{ height: '500px', width: '100%', position: 'relative' }}>
               <MapContainer
                 center={[busCoords.lat, busCoords.lng]}
                 zoom={13}
@@ -126,7 +126,18 @@ function App() {
 
               {/* Refresh Button near the map */}
               <button
-                className="refresh-button"
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  padding: '10px 20px',
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                  zIndex: 1000
+                }}
                 onClick={handleRefreshClick}
               >
                 Refresh Coordinates
@@ -137,19 +148,13 @@ function App() {
 
         {/* Right Side: Bus Information */}
         <div className="right-side">
-          {selectedBus ? (
-            <>
-              <h2>Bus Information</h2>
-              {busInfo ? (
-                <div className="bus-info">
-                  <p><strong>From:</strong> {busInfo.From}</p>
-                  <p><strong>To:</strong> {busInfo.To}</p>
-                  <p><strong>Departure:</strong> {busInfo.Departure}</p>
-                </div>
-              ) : (
-                <p>Loading...</p>
-              )}
-            </>
+          <h2>Bus Information</h2>
+          {busInfo ? (
+            <div className="bus-info">
+              <p><strong>From:</strong> {busInfo.From}</p>
+              <p><strong>To:</strong> {busInfo.to}</p>
+              <p><strong>Departure:</strong> {busInfo.Departure}</p>
+            </div>
           ) : (
             <p>Select a bus to see details.</p>
           )}
