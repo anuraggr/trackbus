@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
+
 import './App.css';
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet'; // Import Leaflet for custom icon
+
 import busIcon from './assets/busicon-1.png'; // Import custom bus icon
 
 function App() {
@@ -54,8 +56,8 @@ function App() {
     fetchBusInfo(); // Fetch bus info on bus selection
   }, [selectedBus]);
 
-  const handleBusCardClick = (busId) => {
-    setSelectedBus(busId);
+  const handleBusChange = (e) => {
+    setSelectedBus(e.target.value);
   };
 
   const handleRefreshClick = () => {
@@ -73,8 +75,22 @@ function App() {
       <h1>Track Your Bus</h1>
 
       <div className="main-content">
-        {/* Left Side: Map */}
+        {/* Left Side: Bus Selector and Map */}
         <div className="left-side">
+          <div className="card">
+            <label htmlFor="busSelect">Choose a bus:</label>
+            <select
+              id="busSelect"
+              value={selectedBus}
+              onChange={handleBusChange}
+            >
+              <option value="">-- Select a bus --</option>
+              <option value="bus1">Bus 1</option>
+              <option value="bus2">Bus 2</option>
+              <option value="bus3">Bus 3</option>
+            </select>
+          </div>
+
           {busCoords && (
             <div style={{ height: '500px', width: '100%', position: 'relative' }}>
               <MapContainer
@@ -130,22 +146,9 @@ function App() {
           )}
         </div>
 
-        {/* Right Side: Bus Information and Cards */}
+        {/* Right Side: Bus Information */}
         <div className="right-side">
           <h2>Bus Information</h2>
-          <div className="bus-cards">
-            {['bus1', 'bus2', 'bus3'].map(busId => (
-              <div
-                key={busId}
-                className={`bus-card ${selectedBus === busId ? 'selected' : ''}`}
-                onClick={() => handleBusCardClick(busId)}
-              >
-                <h3>Bus {busId.charAt(busId.length - 1)}</h3>
-                <p>Click to select this bus.</p>
-              </div>
-            ))}
-          </div>
-
           {busInfo ? (
             <div className="bus-info">
               <p><strong>From:</strong> {busInfo.From}</p>
