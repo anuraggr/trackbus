@@ -36,3 +36,18 @@
 .card {
   padding: 2em;
 }
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.left-side {
+  flex: 2; /* Adjust as needed */
+  margin-right: 20px; /* Space between map and info */
+}
+
+.right-side {
+  flex: 1; /* Adjust as needed */
+}
