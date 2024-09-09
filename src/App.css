@@ -11,9 +11,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -35,41 +37,65 @@
 
 .card {
   padding: 2em;
+  text-align: left; /* Align the select dropdown properly */
 }
 
 .read-the-docs {
   color: #888;
 }
 
+/* General container styling */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
+/* Main content container for map and bus info */
 .main-content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
-  max-width: 1200px;
   margin-top: 20px;
 }
 
-.left-side {
-  flex: 2;
+@media (min-width: 768px) {
+  .main-content {
+    flex-direction: row; /* Side-by-side layout on larger screens */
+    justify-content: space-between;
+  }
 }
 
+/* Left side containing the map */
+.left-side {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .left-side {
+    width: 70%; /* Make map take up most of the space on larger screens */
+  }
+}
+
+/* Right side containing bus info */
 .right-side {
-  flex: 1;
-  padding-left: 20px;
+  width: 100%;
   background-color: #f9f9f9;
   border-left: 1px solid #ddd;
   padding: 20px;
+  margin-top: 20px; /* Ensure proper spacing for smaller screens */
 }
 
+@media (min-width: 768px) {
+  .right-side {
+    width: 30%; /* Make the bus info take up the rest of the space */
+    margin-top: 0; /* Remove margin for larger screens */
+  }
+}
+
+/* Styling for bus information text */
 .bus-info p {
   margin: 10px 0;
   font-size: 16px;
 }
-
-
