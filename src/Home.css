@@ -1,7 +1,16 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 body {
   background-color: #1a1a1a; /* Dark background */
-  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Arial', sans-serif;
+  color: white;
 }
 
 .home-container {
@@ -9,16 +18,17 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full-screen height */
-  color: #fff;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
 }
 
 .title {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #e6e6e6; /* Light gray */
+  color: #e6e6e6;
   margin-bottom: 30px;
-  text-align: center;
 }
 
 .search-bar {
@@ -39,7 +49,7 @@ body {
 }
 
 .search-input::placeholder {
-  color: #aaa; /* Placeholder color */
+  color: #aaa; 
 }
 
 .search-btn {
@@ -75,7 +85,7 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 350px;
+  width: 100%;
   color: #ddd;
   text-align: left;
 }
@@ -86,5 +96,5 @@ body {
 }
 
 .bus-card p strong {
-  color: #f39c12; /* Highlight color for labels */
+  color: #f39c12; 
 }
