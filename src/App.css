@@ -1,4 +1,4 @@
-/* Outer container with full height */
+/* Outer container */
 .container {
   display: flex;
   flex-direction: column;
@@ -7,27 +7,31 @@
   min-height: 100vh;
   background-color: #2f2f2f; /* Dark background */
   color: white;
-  padding: 20px;
 }
 
 /* Central content holder */
 .main-content {
   display: flex;
-  justify-content: space-between; /* Spreads search and info evenly */
+  justify-content: center;
   align-items: center;
-  width: 80%; /* Now it will take 80% of the screen width */
-  max-width: 1200px; /* Keep it constrained for bigger screens */
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%; /* Full width of the screen */
+  max-width: 1000px; /* Maximum width to prevent stretching on large screens */
+  padding: 1rem;
 }
 
-/* Search bar area */
+/* Search bar and bus info alignment */
 .search-container {
+  flex-grow: 1;
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
   margin-right: 2rem;
-  width: 60%; /* Search container takes up more space */
+}
+
+.bus-info-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Search bar styling */
@@ -36,7 +40,7 @@
   font-size: 1rem;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width: 100%; /* Full width */
+  width: 250px; /* Control the width to prevent it from being too large */
   margin-right: 10px;
   outline: none;
   transition: border-color 0.3s ease;
@@ -67,28 +71,28 @@
   padding: 1rem;
   border-radius: 8px;
   color: white;
-  width: 250px;
+  width: 200px;
   text-align: center;
 }
 
-/* Logo stays at the top */
+/* Logo at the top */
 .logo {
   width: 150px;
   height: auto;
   margin-bottom: 2rem;
 }
 
-/* On smaller screens, adjust the layout */
+/* On smaller screens */
 @media (max-width: 768px) {
   .main-content {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
 
   .search-container {
+    margin-right: 0;
     margin-bottom: 1rem;
-    width: 100%;
+    justify-content: center;
   }
 
   .bus-info {
