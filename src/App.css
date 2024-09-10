@@ -10,19 +10,21 @@
   padding: 20px;
 }
 
-/* Center and space out main content */
+/* Updated to take full width with flex properties */
 .main-content {
   display: flex;
-  justify-content: center;
+  justify-content: space-around; /* Adjusts space between search and bus info */
   align-items: center;
   width: 100%;
-  margin-top: 2rem;
+  max-width: 1200px; /* Set a max-width to avoid stretching too far */
+  margin: 0 auto;
+  padding: 2rem;
 }
 
 /* Style for the search bar and button */
 .search-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-right: 2rem; /* Space between search and info */
 }
@@ -71,4 +73,17 @@
   width: 150px;
   height: auto;
   margin-bottom: 2rem;
+}
+
+/* Make sure the bus info and search are spaced evenly */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-container {
+    margin-bottom: 1rem;
+  }
 }
