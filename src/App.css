@@ -1,4 +1,4 @@
-/* Ensure entire content is centered */
+/* Outer container with full height */
 .container {
   display: flex;
   flex-direction: column;
@@ -10,31 +10,33 @@
   padding: 20px;
 }
 
-/* Updated to take full width with flex properties */
+/* Central content holder */
 .main-content {
   display: flex;
-  justify-content: space-around; /* Adjusts space between search and bus info */
+  justify-content: space-between; /* Spreads search and info evenly */
   align-items: center;
-  width: 100%;
-  max-width: 1200px; /* Set a max-width to avoid stretching too far */
+  width: 80%; /* Now it will take 80% of the screen width */
+  max-width: 1200px; /* Keep it constrained for bigger screens */
   margin: 0 auto;
   padding: 2rem;
 }
 
-/* Style for the search bar and button */
+/* Search bar area */
 .search-container {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-right: 2rem; /* Space between search and info */
+  margin-right: 2rem;
+  width: 60%; /* Search container takes up more space */
 }
 
+/* Search bar styling */
 .search-bar {
   padding: 0.75rem;
   font-size: 1rem;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width: 300px;
+  width: 100%; /* Full width */
   margin-right: 10px;
   outline: none;
   transition: border-color 0.3s ease;
@@ -44,6 +46,7 @@
   border-color: #007bff;
 }
 
+/* Search button */
 .search-button {
   padding: 0.75rem 1.5rem;
   background-color: #007bff;
@@ -58,7 +61,7 @@
   background-color: #0056b3;
 }
 
-/* Style for bus info card */
+/* Info section */
 .bus-info {
   background-color: #333;
   padding: 1rem;
@@ -68,14 +71,14 @@
   text-align: center;
 }
 
-/* Logo stays centered at the top */
+/* Logo stays at the top */
 .logo {
   width: 150px;
   height: auto;
   margin-bottom: 2rem;
 }
 
-/* Make sure the bus info and search are spaced evenly */
+/* On smaller screens, adjust the layout */
 @media (max-width: 768px) {
   .main-content {
     flex-direction: column;
@@ -85,5 +88,10 @@
 
   .search-container {
     margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .bus-info {
+    width: 100%;
   }
 }
