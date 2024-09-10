@@ -100,16 +100,16 @@ function App() {
       <div className="main-content">
         {/* Left Side: Bus Search and Map */}
         <div className="left-side">
-          <div className="card">
-            <label htmlFor="busSearch">Search for a bus by number:</label>
+          <div className="search-container">
             <input
               id="busSearch"
               type="text"
               placeholder="Enter bus number"
               value={searchInput}
               onChange={handleSearchChange}
+              className="search-bar"
             />
-            <button onClick={handleSearchClick}>Search</button>
+            <button onClick={handleSearchClick} className="search-button">Search</button>
           </div>
 
           {error && <p style={{ color: 'red' }}>{error}</p>}
