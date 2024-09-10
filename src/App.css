@@ -13,6 +13,23 @@ body {
 padding-left: 350px;
 }
 
+.right-side > h2:nth-child(1) {
+padding-left: 1px;
+padding-left: 5px;
+padding-left: 4px;
+padding-left: 35px;
+}
+
+.left-side {
+  border-left-style: solid;
+  border-left-width: 0px;
+  border-right-style: solid;
+  padding-right: 0px;
+  border-right-width: 0px;
+  margin-left: 0px;
+}
+
+
 /* Central content holder */
 .main-content {
   display: flex;
