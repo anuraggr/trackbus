@@ -1,30 +1,30 @@
-/* Center the entire app content */
+/* Ensure entire content is centered */
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: #2f2f2f; /* Keeps the background dark as seen in the screenshot */
-  color: white; /* Ensures text is visible */
+  background-color: #2f2f2f; /* Dark background */
+  color: white;
+  padding: 20px;
 }
 
-/* Ensure the content is responsive and doesn't get squished */
+/* Center and space out main content */
 .main-content {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 80%;
-  max-width: 1200px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   margin-top: 2rem;
 }
 
-/* Search bar and button should be centered and look better */
+/* Style for the search bar and button */
 .search-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-right: 2rem; /* Space between search and info */
 }
 
 .search-bar {
@@ -56,35 +56,19 @@
   background-color: #0056b3;
 }
 
-/* Logo stays centered at the top */
-.logo {
-  width: 150px;
-  height: auto;
-  margin-bottom: 2rem;
-}
-
-/* Styling for bus information on the right */
-.right-side {
-  width: 40%;
-  background-color: #1e1e1e;
-  padding: 1.5rem;
-  border-radius: 10px;
-  color: white;
-}
-
-/* Map container should take more space on the left */
-.left-side {
-  width: 60%;
-  background-color: #1e1e1e;
-  padding: 1.5rem;
-  border-radius: 10px;
-  margin-right: 2rem;
-}
-
-/* Basic styling for bus info */
+/* Style for bus info card */
 .bus-info {
   background-color: #333;
   padding: 1rem;
   border-radius: 8px;
   color: white;
+  width: 250px;
+  text-align: center;
+}
+
+/* Logo stays centered at the top */
+.logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 2rem;
 }
