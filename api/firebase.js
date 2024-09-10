@@ -7,7 +7,7 @@ const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 
 initializeApp({
   credential: cert(serviceAccount),
-  databaseURL: 'https://your-project-id.firebaseio.com/',
+  databaseURL: 'https://driverapp-47cd8-default-rtdb.firebaseio.com/',
 });
 
 export async function GET() {
@@ -18,7 +18,6 @@ export async function GET() {
 
     if (snapshot.exists()) {
       const data = snapshot.val();
-      // Process and return data
       return NextResponse.json(data);
     } else {
       return NextResponse.json({ message: 'No data found' }, { status: 404 });
