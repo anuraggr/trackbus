@@ -16,19 +16,19 @@ body {
 .home-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end; /* Puts the search bar lower */
   align-items: center;
-  padding: 20px;
+  padding-bottom: 15%;
   width: 100%;
   max-width: 600px;
   text-align: center;
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: bold;
-  color: #e6e6e6;
-  margin-bottom: 30px;
+  color: #f39c12; /* Highlight color for the title */
+  margin-bottom: 40px;
 }
 
 .search-bar {
@@ -66,35 +66,4 @@ body {
 
 .search-btn:hover {
   background-color: #218838;
-}
-
-.available-buses-title {
-  font-size: 1.8rem;
-  color: #f0f0f0;
-  margin-bottom: 20px;
-}
-
-.bus-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.bus-card {
-  background-color: #282828;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  color: #ddd;
-  text-align: left;
-}
-
-.bus-card p {
-  margin: 8px 0;
-  font-size: 1rem;
-}
-
-.bus-card p strong {
-  color: #f39c12; 
 }
