@@ -1,4 +1,4 @@
-const admin = require('firebase-admin');
+import admin from 'firebase-admin';
 
 const config = {
   credential: admin.credential.cert({
@@ -18,9 +18,6 @@ const config = {
   }),
 };
 
-// Initialize Firebase Admin SDK
-const firebase = admin.apps.length
+/export const firebase = admin.apps.length
   ? admin.app()
   : admin.initializeApp(config);
-
-module.exports = { firebase };
