@@ -1,20 +1,20 @@
-import { initializeApp, cert } from 'firebase-admin/app';
-import { getDatabase, ref, get } from 'firebase-admin/database';
+const admin = require('firebase-admin');
+const { getDatabase, ref, get } = require('firebase-admin/database');
 
 // Initialize Firebase Admin SDK
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
 
-initializeApp({
-  credential: cert(serviceAccount),
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://driverapp-47cd8-default-rtdb.firebaseio.com/',
 });
 
-export async function handler(req, res) {
+exports.handler = async (req, res) => {
   if (req.method === 'GET') {
     try {
       const db = getDatabase();
       const locationsRef = ref(db, 'locations');
-      const snapshot = await get(locationsRef);  // Fetch data directly from the reference
+      const snapshot = await get(locationsRef);
 
       if (snapshot.exists()) {
         const data = snapshot.val();
@@ -28,4 +28,4 @@ export async function handler(req, res) {
   } else {
     res.status(405).json({ error: 'Method Not Allowed' });
   }
-}
+};
