@@ -33,12 +33,10 @@ export default async function handler(req, res) {
     const snapshot = await ref.orderByKey().limitToLast(1).once('value');
     const data = snapshot.val();
 
+    // Assuming data is an object with a single key-value pair
     const latestEntry = data ? Object.values(data)[0] : null;
 
     if (latestEntry) {
-      // Write the latest entry to busCoordinates.json (typically done via external storage in serverless)
-      fs.writeFileSync('./public/busCoordinates.json', JSON.stringify({ bus1: latestEntry }));
-      
       res.status(200).json(latestEntry);
     } else {
       res.status(404).json({ message: 'No data found' });
