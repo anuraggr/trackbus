@@ -1,6 +1,5 @@
-import { initializeApp, applicationDefault, cert } from 'firebase-admin/app';
+import { initializeApp, cert } from 'firebase-admin/app';
 import { getDatabase, ref, get } from 'firebase-admin/database';
-import { NextResponse } from 'next/server';
 
 // Initialize Firebase Admin SDK
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
@@ -18,11 +17,11 @@ export async function GET() {
 
     if (snapshot.exists()) {
       const data = snapshot.val();
-      return NextResponse.json(data);
+      return new Response(JSON.stringify(data), { status: 200 });
     } else {
-      return NextResponse.json({ message: 'No data found' }, { status: 404 });
+      return new Response(JSON.stringify({ message: 'No data found' }), { status: 404 });
     }
   } catch (error) {
-    return NextResponse.json({ error: 'Error retrieving data', details: error.message }, { status: 500 });
+    return new Response(JSON.stringify({ error: 'Error retrieving data', details: error.message }), { status: 500 });
   }
 }
