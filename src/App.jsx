@@ -8,9 +8,11 @@ import L from 'leaflet'; // Import Leaflet for custom icon
 import busIcon from './assets/busicon-1.png'; // Import custom bus icon
 
 function App() {
+  const [searchInput, setSearchInput] = useState(''); // For search input
   const [selectedBus, setSelectedBus] = useState('');
   const [busCoords, setBusCoords] = useState(null);
   const [busInfo, setBusInfo] = useState(null); // State for bus info
+  const [error, setError] = useState(''); // Error message for no bus found
   const mapRef = useRef(); // Reference to the map
 
   // Create custom bus marker icon
@@ -27,12 +29,18 @@ function App() {
       fetch('/busCoordinates.json')
         .then((response) => response.json())
         .then((data) => {
-          setBusCoords(data[selectedBus]);
+          if (data[selectedBus]) {
+            setBusCoords(data[selectedBus]);
+            setError(''); // Clear error
 
-          // If we have a map reference, zoom to the new coordinates
-          if (mapRef.current && data[selectedBus]) {
-            const { lat, lng } = data[selectedBus];
-            mapRef.current.setView([lat, lng], 13); // Zoom to the marker with zoom level 13
+            // If we have a map reference, zoom to the new coordinates
+            if (mapRef.current) {
+              const { lat, lng } = data[selectedBus];
+              mapRef.current.setView([lat, lng], 13); // Zoom to the marker with zoom level 13
+            }
+          } else {
+            setError('No such bus found');
+            setBusCoords(null); // Clear map if no bus is found
           }
         })
         .catch((error) => console.error('Error fetching coordinates:', error));
@@ -45,19 +53,34 @@ function App() {
       fetch('/busInfo.json')
         .then((response) => response.json())
         .then((data) => {
-          setBusInfo(data[selectedBus]);
+          if (data[selectedBus]) {
+            setBusInfo(data[selectedBus]);
+            setError(''); // Clear error
+          } else {
+            setError('No such bus found');
+            setBusInfo(null); // Clear info if no bus is found
+          }
         })
         .catch((error) => console.error('Error fetching bus info:', error));
     }
   };
 
   useEffect(() => {
-    fetchCoordinates(); // Fetch coordinates on bus selection
-    fetchBusInfo(); // Fetch bus info on bus selection
+    if (selectedBus) {
+      fetchCoordinates(); // Fetch coordinates when bus is selected
+      fetchBusInfo(); // Fetch bus info when bus is selected
+    }
   }, [selectedBus]);
 
-  const handleBusChange = (e) => {
-    setSelectedBus(e.target.value);
+  // Handle search input
+  const handleSearchChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  // Handle search button click
+  const handleSearchClick = () => {
+    const searchValue = `bus${searchInput}`; // Assuming bus IDs are "bus1", "bus2", etc.
+    setSelectedBus(searchValue);
   };
 
   const handleRefreshClick = () => {
@@ -75,21 +98,21 @@ function App() {
       <h1>Track Your Bus</h1>
 
       <div className="main-content">
-        {/* Left Side: Bus Selector and Map */}
+        {/* Left Side: Bus Search and Map */}
         <div className="left-side">
-          <div className="card">
-            <label htmlFor="busSelect">Choose a bus:</label>
-            <select
-              id="busSelect"
-              value={selectedBus}
-              onChange={handleBusChange}
-            >
-              <option value="">-- Select a bus --</option>
-              <option value="bus1">Bus 1</option>
-              <option value="bus2">Bus 2</option>
-              <option value="bus3">Bus 3</option>
-            </select>
+          <div className="search-container">
+            <input
+              id="busSearch"
+              type="text"
+              placeholder="Enter bus number"
+              value={searchInput}
+              onChange={handleSearchChange}
+              className="search-bar"
+            />
+            <button onClick={handleSearchClick} className="search-button">Search</button>
           </div>
+
+          {error && <p style={{ color: 'red' }}>{error}</p>}
 
           {busCoords && (
             <div style={{ height: '500px', width: '100%', position: 'relative' }}>
@@ -151,12 +174,13 @@ function App() {
           <h2>Bus Information</h2>
           {busInfo ? (
             <div className="bus-info">
+              <p><strong>Bus No:</strong> {busInfo.No}</p>
               <p><strong>From:</strong> {busInfo.From}</p>
               <p><strong>To:</strong> {busInfo.to}</p>
               <p><strong>Departure:</strong> {busInfo.Departure}</p>
             </div>
           ) : (
-            <p>Select a bus to see details.</p>
+            <p>Search for a bus to see details.</p>
           )}
         </div>
       </div>
