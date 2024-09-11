@@ -14,7 +14,7 @@ export async function handler(req, res) {
     try {
       const db = getDatabase();
       const locationsRef = ref(db, 'locations');
-      const snapshot = await get(locationsRef);  // Fetch the data directly from the reference
+      const snapshot = await get(locationsRef);  // Fetch data directly from the reference
 
       if (snapshot.exists()) {
         const data = snapshot.val();
