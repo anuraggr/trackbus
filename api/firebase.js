@@ -1,5 +1,5 @@
-import { initializeApp, applicationDefault, cert } from 'firebase_admin/app';
-import { getDatabase, ref, get } from 'firebase_admin/database';
+import { initializeApp, applicationDefault, cert } from 'firebase-admin/app';
+import { getDatabase, ref, get } from 'firebase-admin/database';
 import { NextResponse } from 'next/server';
 
 // Initialize Firebase Admin SDK
