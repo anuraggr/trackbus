@@ -1,10 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-
 import './App.css';
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet'; 
-
 import busIcon from './assets/busicon-1.png'; 
 
 function App() {
@@ -14,7 +12,6 @@ function App() {
   const [busInfo, setBusInfo] = useState(null); 
   const [error, setError] = useState(''); 
   const mapRef = useRef(); // Reference to the map
-
   
   const busMarkerIcon = L.icon({
     iconUrl: busIcon,
@@ -23,30 +20,34 @@ function App() {
     popupAnchor: [0, -38] 
   });
 
-  
+  // Function to fetch coordinates from serverless function
   const fetchCoordinates = () => {
-    if (selectedBus) {
-      fetch('/busCoordinates.json')
-        .then((response) => response.json())
-        .then((data) => {
-          if (data[selectedBus]) {
-            setBusCoords(data[selectedBus]);
-            setError(''); 
+    fetch('/api/firebase') // Assuming the serverless function endpoint is /api/firebase
+      .then((response) => response.json())
+      .then((data) => {
+        if (data) {
+          setBusCoords({
+            lat: data.latitude,
+            lng: data.longitude,
+            accuracy: data.accuracy || 10, // Set default accuracy if not provided
+          });
+          setError(''); 
 
-            
-            if (mapRef.current) {
-              const { lat, lng } = data[selectedBus];
-              mapRef.current.setView([lat, lng], 13); 
-            }
-          } else {
-            setError('No such bus found');
-            setBusCoords(null); 
+          if (mapRef.current) {
+            mapRef.current.setView([data.latitude, data.longitude], 13); 
           }
-        })
-        .catch((error) => console.error('Error fetching coordinates:', error));
-    }
+        } else {
+          setError('No data found');
+          setBusCoords(null); 
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching coordinates:', error);
+        setError('Failed to fetch coordinates');
+      });
   };
 
+  // Function to fetch bus info
   const fetchBusInfo = () => {
     if (selectedBus) {
       fetch('/busInfo.json')
@@ -60,7 +61,10 @@ function App() {
             setBusInfo(null); 
           }
         })
-        .catch((error) => console.error('Error fetching bus info:', error));
+        .catch((error) => {
+          console.error('Error fetching bus info:', error);
+          setError('Failed to fetch bus info');
+        });
     }
   };
 
@@ -76,6 +80,7 @@ function App() {
   };
 
   const handleSearchClick = () => {
+    // Assuming the search input is just used to set selectedBus and that you handle it directly
     const searchValue = `bus${searchInput}`;
     setSelectedBus(searchValue);
   };
@@ -117,34 +122,31 @@ function App() {
                 center={[busCoords.lat, busCoords.lng]}
                 zoom={13}
                 style={{ height: '100%', width: '100%' }}
-                ref={mapRef} // Attach the map reference here
+                ref={mapRef}
               >
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
 
-                {/* Marker for the bus */}
                 <Marker
                   position={[busCoords.lat, busCoords.lng]}
-                  icon={busMarkerIcon} // Apply custom bus icon
+                  icon={busMarkerIcon}
                 >
                   <Popup>
                     {`Bus is here: ${busCoords.lat}, ${busCoords.lng}`}
                   </Popup>
                 </Marker>
 
-                {/* Circle for accuracy radius */}
                 {busCoords.accuracy && (
                   <Circle
                     center={[busCoords.lat, busCoords.lng]}
-                    radius={busCoords.accuracy} // Radius in meters
+                    radius={busCoords.accuracy}
                     pathOptions={{ color: 'lightblue', fillColor: 'lightblue', fillOpacity: 0.2 }}
                   />
                 )}
               </MapContainer>
 
-              {/* Refresh Button near the map */}
               <button
                 style={{
                   position: 'absolute',
@@ -173,7 +175,7 @@ function App() {
             <div className="bus-info">
               <p><strong>Bus No:</strong> {busInfo.No}</p>
               <p><strong>From:</strong> {busInfo.From}</p>
-              <p><strong>To:</strong> {busInfo.to}</p>
+              <p><strong>To:</strong> {busInfo.To}</p>
               <p><strong>Departure:</strong> {busInfo.Departure}</p>
             </div>
           ) : (
