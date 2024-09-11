@@ -22,7 +22,7 @@ export const firebase = admin.apps.length
   ? admin.app()
   : admin.initializeApp(config);
 
-export async function handler(req, res) {
+export default async function handler(req, res) {
   try {
     // Example usage of Firebase
     // For demonstration, replace with your actual logic
