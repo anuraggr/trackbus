@@ -18,6 +18,6 @@ const config = {
   }),
 };
 
-/export const firebase = admin.apps.length
+export const firebase = admin.apps.length
   ? admin.app()
   : admin.initializeApp(config);
