@@ -16,6 +16,7 @@ const config = {
   "universe_domain": "googleapis.com"
 
   }),
+  databaseURL: 'https://driverapp-47cd8-default-rtdb.firebaseio.com/',
 };
 
 export const firebase = admin.apps.length
