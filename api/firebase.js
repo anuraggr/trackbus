@@ -25,14 +25,21 @@ export const firebase = admin.apps.length
 
 export default async function handler(req, res) {
   try {
-    // Example usage of Firebase
-    // For demonstration, replace with your actual logic
     const db = admin.database();
-    const ref = db.ref('some/path');
-    const snapshot = await ref.once('value');
+    const ref = db.ref('location');
+    
+    // Query the database to get the last entry
+    const snapshot = await ref.orderByKey().limitToLast(1).once('value');
     const data = snapshot.val();
 
-    res.status(200).json(data);
+    // Assuming data is an object with a single key-value pair
+    const latestEntry = data ? Object.values(data)[0] : null;
+
+    if (latestEntry) {
+      res.status(200).json(latestEntry);
+    } else {
+      res.status(404).json({ message: 'No data found' });
+    }
   } catch (error) {
     res.status(500).json({ error: 'Error retrieving data', details: error.message });
   }
