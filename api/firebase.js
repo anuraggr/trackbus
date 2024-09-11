@@ -1,5 +1,5 @@
 import { initializeApp, cert } from 'firebase-admin/app';
-import { getDatabase, ref, get, child } from 'firebase-admin/database';
+import { getDatabase, ref, get } from 'firebase-admin/database';
 
 // Initialize Firebase Admin SDK
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
@@ -14,7 +14,7 @@ export async function handler(req, res) {
     try {
       const db = getDatabase();
       const locationsRef = ref(db, 'locations');
-      const snapshot = await get(child(locationsRef, '/'));
+      const snapshot = await get(locationsRef);  // Fetch the data directly from the reference
 
       if (snapshot.exists()) {
         const data = snapshot.val();
