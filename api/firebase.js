@@ -21,3 +21,18 @@ const config = {
 export const firebase = admin.apps.length
   ? admin.app()
   : admin.initializeApp(config);
+
+export async function handler(req, res) {
+  try {
+    // Example usage of Firebase
+    // For demonstration, replace with your actual logic
+    const db = admin.database();
+    const ref = db.ref('some/path');
+    const snapshot = await ref.once('value');
+    const data = snapshot.val();
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ error: 'Error retrieving data', details: error.message });
+  }
+}
