@@ -26,7 +26,7 @@ export const firebase = admin.apps.length
 export default async function handler(req, res) {
   try {
     const db = admin.database();
-    const ref = db.ref('location');
+    const ref = db.ref('locations');
     
     // Query the database to get the last entry
     const snapshot = await ref.orderByKey().limitToLast(1).once('value');
