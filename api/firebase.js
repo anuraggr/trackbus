@@ -1,5 +1,5 @@
 import { initializeApp, cert } from 'firebase-admin/app';
-import { getDatabase, ref, get } from 'firebase-admin/database';
+import { getDatabase, ref, get, child } from 'firebase-admin/database';
 
 // Initialize Firebase Admin SDK
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
@@ -9,19 +9,23 @@ initializeApp({
   databaseURL: 'https://driverapp-47cd8-default-rtdb.firebaseio.com/',
 });
 
-export async function GET() {
-  try {
-    const db = getDatabase();
-    const locationsRef = ref(db, 'locations');
-    const snapshot = await get(locationsRef);  // Use `get` to fetch data from the reference
+export async function handler(req, res) {
+  if (req.method === 'GET') {
+    try {
+      const db = getDatabase();
+      const locationsRef = ref(db, 'locations');
+      const snapshot = await get(child(locationsRef, '/'));
 
-    if (snapshot.exists()) {
-      const data = snapshot.val();
-      return new Response(JSON.stringify(data), { status: 200 });
-    } else {
-      return new Response(JSON.stringify({ message: 'No data found' }), { status: 404 });
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        res.status(200).json(data);
+      } else {
+        res.status(404).json({ message: 'No data found' });
+      }
+    } catch (error) {
+      res.status(500).json({ error: 'Error retrieving data', details: error.message });
     }
-  } catch (error) {
-    return new Response(JSON.stringify({ error: 'Error retrieving data', details: error.message }), { status: 500 });
+  } else {
+    res.status(405).json({ error: 'Method Not Allowed' });
   }
 }
