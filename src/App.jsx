@@ -8,22 +8,22 @@ import L from 'leaflet';
 import busIcon from './assets/busicon-1.png'; 
 
 function App() {
-  const [searchInput, setSearchInput] = useState(''); 
+  const [searchInput, setSearchInput] = useState('');
   const [selectedBus, setSelectedBus] = useState('');
   const [busCoords, setBusCoords] = useState(null);
   const [busInfo, setBusInfo] = useState(null); 
-  const [error, setError] = useState(''); /
-  const mapRef = useRef();
+  const [error, setError] = useState(''); 
+  const mapRef = useRef(); // Reference to the map
 
-  // Create custom bus marker icon
+  
   const busMarkerIcon = L.icon({
     iconUrl: busIcon,
-    iconSize: [38, 38],
-    iconAnchor: [19, 38],
-    popupAnchor: [0, -38] /
+    iconSize: [38, 38], 
+    iconAnchor: [19, 38], 
+    popupAnchor: [0, -38] 
   });
 
-  // fetch cords
+  
   const fetchCoordinates = () => {
     if (selectedBus) {
       fetch('/busCoordinates.json')
@@ -31,23 +31,22 @@ function App() {
         .then((data) => {
           if (data[selectedBus]) {
             setBusCoords(data[selectedBus]);
-            setError(''); // Clear error
+            setError(''); 
 
-            // zoom to coords
+            
             if (mapRef.current) {
               const { lat, lng } = data[selectedBus];
-              mapRef.current.setView([lat, lng], 13);
+              mapRef.current.setView([lat, lng], 13); 
             }
           } else {
             setError('No such bus found');
-            setBusCoords(null); //remove map if no bus
+            setBusCoords(null); 
           }
         })
         .catch((error) => console.error('Error fetching coordinates:', error));
     }
   };
 
-  // fetch bus info
   const fetchBusInfo = () => {
     if (selectedBus) {
       fetch('/busInfo.json')
@@ -55,7 +54,7 @@ function App() {
         .then((data) => {
           if (data[selectedBus]) {
             setBusInfo(data[selectedBus]);
-            setError('');
+            setError(''); 
           } else {
             setError('No such bus found');
             setBusInfo(null); 
@@ -68,11 +67,10 @@ function App() {
   useEffect(() => {
     if (selectedBus) {
       fetchCoordinates(); 
-      fetchBusInfo(); 
+      fetchBusInfo();
     }
   }, [selectedBus]);
 
-  
   const handleSearchChange = (e) => {
     setSearchInput(e.target.value);
   };
@@ -119,24 +117,24 @@ function App() {
                 center={[busCoords.lat, busCoords.lng]}
                 zoom={13}
                 style={{ height: '100%', width: '100%' }}
-                ref={mapRef}
+                ref={mapRef} // Attach the map reference here
               >
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
 
-                
+                {/* Marker for the bus */}
                 <Marker
                   position={[busCoords.lat, busCoords.lng]}
-                  icon={busMarkerIcon} 
+                  icon={busMarkerIcon} // Apply custom bus icon
                 >
                   <Popup>
                     {`Bus is here: ${busCoords.lat}, ${busCoords.lng}`}
                   </Popup>
                 </Marker>
 
-             
+                {/* Circle for accuracy radius */}
                 {busCoords.accuracy && (
                   <Circle
                     center={[busCoords.lat, busCoords.lng]}
@@ -146,7 +144,7 @@ function App() {
                 )}
               </MapContainer>
 
-             
+              {/* Refresh Button near the map */}
               <button
                 style={{
                   position: 'absolute',
@@ -168,6 +166,7 @@ function App() {
           )}
         </div>
 
+        {/* Right Side: Bus Information */}
         <div className="right-side">
           <h2>Bus Information</h2>
           {busInfo ? (
