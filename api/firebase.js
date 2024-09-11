@@ -13,7 +13,7 @@ export async function GET() {
   try {
     const db = getDatabase();
     const locationsRef = ref(db, 'locations');
-    const snapshot = await get(locationsRef);
+    const snapshot = await get(locationsRef);  // Use `get` to fetch data from the reference
 
     if (snapshot.exists()) {
       const data = snapshot.val();
