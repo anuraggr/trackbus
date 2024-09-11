@@ -34,7 +34,7 @@ function App() {
           setError(''); 
 
           if (mapRef.current) {
-            mapRef.current.setView([data.latitude, data.longitude], 13); 
+            mapRef.current.setView([data.latitude, data.longitude], 17); 
           }
         } else {
           setError('No data found');
@@ -120,7 +120,7 @@ function App() {
             <div style={{ height: '500px', width: '100%', position: 'relative' }}>
               <MapContainer
                 center={[busCoords.lat, busCoords.lng]}
-                zoom={13}
+                zoom={17}
                 style={{ height: '100%', width: '100%' }}
                 ref={mapRef}
               >
