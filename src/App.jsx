@@ -59,6 +59,7 @@ function App() {
           } else {
             setError('No such bus found');
             setBusInfo(null); 
+            setBusCoords(null);
  
 
             setTimeout(() => {
@@ -70,6 +71,10 @@ function App() {
         .catch((error) => {
           console.error('Error fetching bus info:', error);
           setError('Failed to fetch bus info');
+
+          setTimeout(() => {
+              setError('');
+            }, 5000);
         });
     }
   };
