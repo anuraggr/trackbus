@@ -189,6 +189,7 @@ function App() {
               <ul className="route-timeline">
   {busInfo.Route.map((stop, idx) => (
     <li key={idx} className="timeline-item">
+      <div className="circle"></div> {/* This will be the small circle marking the stop */}
       <div className="stop-details">
         <strong>{stop.StopName}</strong>
         <span>{stop.Time}</span>
