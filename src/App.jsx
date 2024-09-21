@@ -61,9 +61,7 @@ function App() {
             setBusInfo(null); 
             setBusCoords(null);
           }
-          setTimeout(() => {
-            setError('');
-          }, 5000);
+          
         })
         .catch((error) => {
           console.error('Error fetching bus info:', error);
