@@ -177,6 +177,7 @@ function App() {
               <p><strong>From:</strong> {busInfo.From}</p>
               <p><strong>To:</strong> {busInfo.To}</p>
               <p><strong>Departure:</strong> {busInfo.Departure}</p>
+              <p><strong>Bus Driver Contact:</strong> {busInfo.BusDriverContact}</p>
             </div>
           ) : (
             <p>Search for a bus to see details.</p>
