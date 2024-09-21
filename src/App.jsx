@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet'; 
 import busIcon from './assets/busicon-1.png'; 
+import { Circle } from 'react-leaflet';
 
 function App() {
   const [searchInput, setSearchInput] = useState('');
@@ -187,6 +188,15 @@ useEffect(() => {
                     {`Bus is here: ${busCoords.lat}, ${busCoords.lng}`}
                   </Popup>
                 </Marker>
+
+                {/* Circle for User Location */}
+                {userLocation && (
+                  <Circle
+                  center={[userLocation.lat, userLocation.lng]}
+                  radius={100} // Adjust the radius as needed
+                  pathOptions={{ color: 'blue', fillColor: 'blue', fillOpacity: 0.2 }} // Blue circle
+                  />
+                )}
 
                 {busCoords.accuracy && (
                   <Circle
