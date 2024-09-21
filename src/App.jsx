@@ -223,8 +223,8 @@ function App() {
               >
                 Refresh
               </button>
-
-              /*<button
+              <!--
+              <button
                 style={{
                   position: 'absolute',
                   bottom: '10px',
@@ -240,7 +240,8 @@ function App() {
                 onClick={handleUserLoc}
               >
                 Me
-              </button>*/
+              </button>
+                -->
             </div>
           )}
         </div>
