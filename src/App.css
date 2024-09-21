@@ -75,4 +75,56 @@
   margin: 0 auto;
 }
 
+.bus-info {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bus-info h3 {
+  margin-top: 20px;
+  color: #007bff;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.bus-info p {
+  font-size: 1rem;
+  margin: 8px 0;
+}
+
+.bus-info strong {
+  color: #333;
+}
+
+.route-list {
+  list-style: none;
+  padding: 0;
+}
+
+.route-list li {
+  background-color: #e0f7fa;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.route-list li:hover {
+  background-color: #b2ebf2;
+}
+
+.route-stop {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.route-time {
+  font-size: 1rem;
+  color: #007bff;
+}
 
