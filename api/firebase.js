@@ -5,41 +5,45 @@ const config = {
   credential: admin.credential.cert({
 
   "type": "service_account",
-  "project_id": "driverapp-47cd8",
-  "private_key_id": "d59665d390a61ef72e43149dcca2bfc626dfeca3",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDO/ExR1CV5GIfB\nkGOR1ICyT+PcyMZoR4R/DVctVzuDkuOb9HHFPNcK0b8dxZM/aRO6lVXYSH0gJS8Y\n6ZrozZbCSB9grAOkQQcPfEdjyBFQeBB6O+PD+2MhnJOGdcfZ3JgDf+vNqbZXtuuN\nUaDwRXOFs9jswHo5MJFKqpCpq0iuqCMn50UxcPcdz4qj1P52kOHAntBWJHLC5nte\ny7NdqodtlubWR9hQmbqhuLQnlXizt4p4azImfj5Z/8s+LW8+8edZcdI8Jzu+L93q\nSGEMzbrOayCwrVPsy0yBQie+pzOvjWLbRxziQGxk3Dm1DWjCYW11xQtgw5czmzef\nryBHASj3AgMBAAECggEAVZNjHGvJCG13ZzRCrl68zLwR+cy6lw+GfJ7v3YuUy/u1\nhduFFCZoxAze5riyfcN8SCaIxPCHZvxoofSnOrwRKgb2jhngMY8/E4xu2Za0beAN\n8/OB4huzqwhYx/03IOA+qye+vpt9i3tRnO5USzJzpiIqvAuCHNXzI/sr7zIlTSvw\nt9OBuZ1HKrbCRE3wElXRoaX3jjXcgrNGhqv8s2pWNwxn6Ab8ilDroF8//hnhN4Is\nM69p0hjbpw5K/WRn2F0LkKF+jr2d1Uiwf8qkYsrC+HBq5iq27+wveyPHRPoz7Fba\n2DmqxK+fggh7vxtWsUhI0Ub+qTgiC3E5nJACz39gSQKBgQD7Kg5KhgPAQAoOJcZQ\ngYDPW8k/11Rc+lqjrwJBCPwz6eXbHyb2lVWXzcl4F++JqTDGWU0uVwJolmis138F\nht+RpI/+G7iXUu7jEmK5uCEWP5W0vi8WVEDUxXT0tMBRSal5vdZGeTTpayd5NwFe\nKCtmPd8JdvuxAQ57FkQRSBFoyQKBgQDS+H49T3a/3jYiv9efQhupA+VrzCL2H1G9\nUU+U+4O21856Fpe6csWDfjMAi2GXyNqe0mqx/+YNcTj8vZmJBJZ54Hcq60o4Irm+\nCSmlGzqQfQU5xcKcTBc50nSf6AMPNulw0k4QYpHAqkHjoP1puW6xJ8W7xM2W1Ar+\nwqE5u+yjvwKBgCu1ZOlJKyvwuQ8/OaTW9KChW4N1qKPJma50jVLeCm3KXYrlf/VX\nhZ62XEI/ABuXyvopnknbMHsc+bhihCNlFlEVL03MazJCZ3oyv+WMCo4BoL7kffNH\n1ERy3Gidb/51cD3UcI6xFykr0aHBlcZZ/Tt8tuzBvQlPosJ+3HeZcBYpAoGBANGy\nJyBfvMPnZl3R28uzlPTBJ6enJ1UGOmP3zydhfEEgbl4R2Mx9Se9yX9V5tQ5+mTbm\nJSE6Hvtbf+5Psq1rfvozb5+ccZAsi/zk9Jzk3KhDbA9Jjy91vlw94KgUn/3ecdgv\nYWKN5xve31EXcutEYk76HmONsV/q8ebZpBFTxlnXAoGAJ9wdpOZr1chU8UR3qID6\nVwd/m6Ao9986j9k75iL4A7faUKYmcvHPE+0ryWIIu88KzSL1u0OQckCm7Tygc8y4\nnMJCDePKk/f27do5PvsFSN4M6cPbNOCIFxXVvwrPdMPUKsqkvSbtk8uZezylbUPm\nL4FqhQhL2/EUGO8mYeHjbsI=\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-2tcx5@driverapp-47cd8.iam.gserviceaccount.com",
-  "client_id": "112260600757664742064",
+  "project_id": "bus-mitra-driver",
+  "private_key_id": "67e46df40c5c53c57859bfb5fa80472872d8ec1d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC2VVJTwBUZdVeC\nqqGaCrXO9AzjSGFH4h1rLVzUhZ3G7FdQtX2WHaFa4oMs4qGgnqmmKB+rlbJ8vbVc\nc/FDom1tUfQ3EC//is7alYKtRgThN+VTggbosWgWCKJMImJOwuAMwVvZAtc6sUnK\nxdioi9hva2abiZWea75hgqmsdcnH5oBO7WlFMO/aHYOKznG2ItG9HlGdHo+pf9KY\npKjdluG8Y3N3FHAQ6gOXFWzqtAMr7mLh08Tu0PsGUUy+4/QTuoABQPLkyipPHoq/\nd8xgOyg6vKr5zuqmPUzGsfB584fONUfmx/UR8C+uvT4B40jWds+KST0HO9LwhjXL\nuNv8X6+HAgMBAAECggEABKxaoKHUgjaJDcs+EAitLIS939I7XSN+xYi72BnPSKNG\noz1Uq3/GYq7AXnu+al4msNxW8VSA5uZhmPIYVtEKrX4WpR5iKVrVseURgwdqQ82h\nFo0+4a/sffdIBNOIhCzOOUm8foS/lmce//7zw7WcjB6G/Jg7fkkLmofwrJEMj/5/\nrqlx9p2uUFaOUopNgCofB6U2MseL4f90F15X7LI4kv4D8RFXrWpB9VKrxsohrx4f\nKx0ZdTCIdTZUEiR0hlJSvDKhegopT+w8b55HI1/PZmiRjEhaZMwdClZT1cAX7fer\nqlIFB7SEzxzWBEdqkMbQMs6HoL8b0dsyxAxop51tgQKBgQDyQN3vHzT37lUHeKe7\nNnr4aqUlutHdyqFvdxY+peuXc1oq76DupuDwnrU5aFGkMGB8WCgbJ6o2J5hJORAh\nnB6O155uBphNE+QY3swqTq8wt/z52uWo2NcCFcUcnAhNY2mMJkj7w8xFCFLr1lH8\nVJv8oe4tu/2LfIROVRNqWGXq0QKBgQDArgQAlKoOacLBUb2weTXul8VL1FZopLCs\nI9OxuuXx/WoXSiF/5Yi+LMndIIN2UtdGjDCtNW7mdVJHsBh3IRjA0lULkrz/QXRN\n2dXi7Jn4wfNvWu7nmztWl2ByRmsyGMLeXAR/mx9y76TqkWZQVroz6mDdvY6KchWa\nCNZPQRpa1wKBgCLccNOTYxT2qCfOFh0bxvBusFtQmhjXqwmWUo4rZE7EG8qn9znA\nrAgUXrHnMDB3gbsDGKpnt9fZNNH8szSS+dbGcpcUveABp8ZocWr5Lb7OC0qNVJVK\ntw4mwdnPHma8kpjHfaM1VvTsMLqdeejc6CGfz92m+uKSxZtcJNId7HSxAoGBAL9u\nJFvPWAVp3izjYWrrgkHCWCq2lALzXPQpxDFYVwzNkZIB/LZs/iazqPshSntMYsWc\nkuADrmMZPN4sfqIdJ9KrJgORjmSsSzjtrCsAlxkm2Q1Rcvp4p8OoMhJXFDl5kGIL\nWgzNubkfjuHeA6DeCbF6szKbGftCzWN0VDf5no2RAoGBALK9bSomhnTmm6KMyqnA\nqlCEo8DuDtuJtvEgP+LDD2t5bzxAnYx7wUBpyiZC4mZ7kxlofHRatve+/5M8oswK\nNtgjUD7vRxNclTRDLPpzR9w2uxmXjCZ+F0crWlJ3j2258FT/S/Vwk9XIpTput/CG\nEt0TyKiXdbMs2XaH8UcRVI+s\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-8ll54@bus-mitra-driver.iam.gserviceaccount.com",
+  "client_id": "109824232522646175406",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2tcx5%40driverapp-47cd8.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-8ll54%40bus-mitra-driver.iam.gserviceaccount.com",
+  "universe_domain": "universe_domain": "googleapis.com"
 
   }),
-  databaseURL: 'https://driverapp-47cd8-default-rtdb.firebaseio.com/',
+  databaseURL: 'https://bus-mitra-driver-default-rtdb.firebaseio.com/',
 };
 
 export const firebase = admin.apps.length
   ? admin.app()
   : admin.initializeApp(config);
 
+
+export const firebase = admin.apps.length
+  ? admin.app()
+  : admin.initializeApp(config);
+
 export default async function handler(req, res) {
+  const { busNo } = req.query;  // Extract the bus number from the query parameters
+
   try {
     const db = admin.database();
-    const ref = db.ref('locations');
-    
-    // Query the database to get the last entry
-    const snapshot = await ref.orderByKey().limitToLast(1).once('value');
+    const ref = db.ref(`locations/${busNo}`);  // Access the bus number in the database
+
+    // Query the database to get the entry for the specified bus number
+    const snapshot = await ref.once('value');
     const data = snapshot.val();
 
-    // Assuming data is an object with a single key-value pair
-    const latestEntry = data ? Object.values(data)[0] : null;
-
-    if (latestEntry) {
-      res.status(200).json(latestEntry);
+    if (data) {
+      res.status(200).json(data);  // Return the bus location data (latitude, longitude)
     } else {
-      res.status(404).json({ message: 'No data found' });
+      res.status(404).json({ message: `Bus number ${busNo} not found` });
     }
   } catch (error) {
     res.status(500).json({ error: 'Error retrieving data', details: error.message });
