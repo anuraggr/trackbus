@@ -116,7 +116,7 @@ function App() {
 
           {error && <p style={{ color: 'red' }}>{error}</p>}
 
-          {busCoords && (
+          {busCoords && busInfo && (
             <div style={{ height: '500px', width: '100%', position: 'relative' }}>
               <MapContainer
                 center={[busCoords.lat, busCoords.lng]}
