@@ -27,25 +27,28 @@ function App() {
 
 
   const getUserLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-          setLocationRequested(true); 
-          },
-        (error) => {
-          console.error('Error getting location:', error);
-          setLocationRequested(true); // Still mark as requested even on error
-        }
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
-      setLocationRequested(true); // Mark as requested if geolocation isn't supported
-    }
-  };
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setUserLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        });
+        setLocationRequested(true); // Successfully requested
+        zoomToUserLocation(); // Zoom to the user's location once it's available
+      },
+      (error) => {
+        console.error('Error getting location:', error);
+        setLocationRequested(true); // Still mark as requested even on error
+        alert('Location access was denied. Please enable location permissions and try again.');
+      }
+    );
+  } else {
+    console.error('Geolocation is not supported by this browser.');
+    setLocationRequested(true); // Mark as requested if geolocation isn't supported
+  }
+};
+
 
   const zoomToUserLocation = () => {
     if (mapRef.current && userLocation) {
@@ -137,12 +140,9 @@ useEffect(() => {
   };
 
   const handleUserLoc = () => {
-    if (!locationRequested) {
-    getUserLocation();
-  } else {
-    zoomToUserLocation();
-  }
-  };
+  setLocationRequested(false); // Reset to false so that it asks for location again
+  getUserLocation(); // Always try to get location when the button is clicked
+};
 
   return (
     <div className="container">
