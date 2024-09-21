@@ -13,6 +13,7 @@ function App() {
   const [busInfo, setBusInfo] = useState(null); 
   const [error, setError] = useState(''); 
   const mapRef = useRef(); // Reference to the map
+  const [userLocation, setUserLocation] = useState(null);
   
   const busMarkerIcon = L.icon({
     iconUrl: busIcon,
@@ -20,6 +21,30 @@ function App() {
     iconAnchor: [19, 38], 
     popupAnchor: [0, -38] 
   });
+
+  const getUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+          // You can also set this location in your map view
+          if (mapRef.current) {
+            mapRef.current.setView([position.coords.latitude, position.coords.longitude], 17);
+          }
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+          // Handle error (e.g., show a message to the user)
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  };
+  
 
   const fetchCoordinates = () => {
     if (!selectedBus) return;
@@ -79,6 +104,8 @@ function App() {
   };
 
   useEffect(() => {
+    getUserLocation();
+    
     if (selectedBus) {
       fetchCoordinates(); 
       fetchBusInfo();
