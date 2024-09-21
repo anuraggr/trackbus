@@ -1,0 +1,22 @@
+{
+  "55": {
+    "No": "55",
+    "RouteName": "Sitapura to Sindhi Camp",
+    "Stops": [
+      { "StopName": "Sitapura", "lat": 26.7925, "lng": 75.8465 },
+      { "StopName": "Pratap Nagar", "lat": 26.8384, "lng": 75.8039 },
+      { "StopName": "Gopalpura", "lat": 26.8851, "lng": 75.7890 },
+      { "StopName": "Sindhi Camp", "lat": 26.9226, "lng": 75.7962 }
+    ]
+  },
+  "56": {
+    "No": "56",
+    "RouteName": "Bhakrota to Sindhi Camp",
+    "Stops": [
+      { "StopName": "Bhakrota", "lat": 26.8776, "lng": 75.7290 },
+      { "StopName": "Ajmer Road", "lat": 26.9023, "lng": 75.7437 },
+      { "StopName": "Narayan Singh Circle", "lat": 26.9129, "lng": 75.8100 },
+      { "StopName": "Sindhi Camp", "lat": 26.9226, "lng": 75.7962 }
+    ]
+  }
+}
