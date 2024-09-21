@@ -108,17 +108,17 @@ function App() {
   };
 
   useEffect(() => {
+  if (!locationRequested) {
+    getUserLocation(); // Only request if it hasn't been done yet
+  }
+}, [locationRequested]);
 
-    if (!locationRequested) {
-      getUserLocation(); // Only request if it hasn't been done yet
-    }
-  }, [locationRequested]);
-    
-    if (selectedBus) {
-      fetchCoordinates(); 
-      fetchBusInfo();
-    }
-  }, [selectedBus]);
+useEffect(() => {
+  if (selectedBus) {
+    fetchCoordinates(); 
+    fetchBusInfo();
+  }
+}, [selectedBus]);
 
   const handleSearchChange = (e) => {
     setSearchInput(e.target.value);
