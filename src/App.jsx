@@ -105,6 +105,7 @@ function App() {
 
   useEffect(() => {
     getUserLocation();
+}, []
     
     if (selectedBus) {
       fetchCoordinates(); 
