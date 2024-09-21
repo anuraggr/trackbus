@@ -20,12 +20,14 @@ function App() {
     popupAnchor: [0, -38] 
   });
 
-  // Function to fetch coordinates from serverless function
+  // Function to fetch coordinates from serverless function for specific bus number
   const fetchCoordinates = () => {
-    fetch('/api/firebase') // Assuming the serverless function endpoint is /api/firebase
+    if (!selectedBus) return;
+
+    fetch(`/api/firebase?busNumber=${selectedBus}`) // Send bus number as query param
       .then((response) => response.json())
       .then((data) => {
-        if (data) {
+        if (data && data.latitude && data.longitude) {
           setBusCoords({
             lat: data.latitude,
             lng: data.longitude,
@@ -37,7 +39,7 @@ function App() {
             mapRef.current.setView([data.latitude, data.longitude], 17); 
           }
         } else {
-          setError('No data found');
+          setError('No data found for this bus');
           setBusCoords(null); 
         }
       })
@@ -49,37 +51,36 @@ function App() {
 
   // Function to fetch bus info
   const fetchBusInfo = () => {
-  if (selectedBus) {
-    fetch('/busInfo.json')
-      .then((response) => response.json())
-      .then((data) => {
-        if (data[selectedBus]) {
-          setBusInfo(data[selectedBus]);
-          setBusCoords(null); // Reset coordinates if an invalid bus was previously searched
-          setError(''); 
-        } else {
-          setError('No such bus found');
-          setBusInfo(null); 
-          setBusCoords(null); // Make sure map is not shown if bus is invalid
+    if (selectedBus) {
+      fetch('/busInfo.json')
+        .then((response) => response.json())
+        .then((data) => {
+          if (data[selectedBus]) {
+            setBusInfo(data[selectedBus]);
+            setBusCoords(null); // Reset coordinates if an invalid bus was previously searched
+            setError(''); 
+          } else {
+            setError('No such bus found');
+            setBusInfo(null); 
+            setBusCoords(null); // Make sure map is not shown if bus is invalid
+
+            // Keep the error for 5 seconds
+            setTimeout(() => {
+              setError('');
+            }, 5000);
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching bus info:', error);
+          setError('Failed to fetch bus info');
 
           // Keep the error for 5 seconds
           setTimeout(() => {
             setError('');
           }, 5000);
-        }
-      })
-      .catch((error) => {
-        console.error('Error fetching bus info:', error);
-        setError('Failed to fetch bus info');
-
-        // Keep the error for 5 seconds
-        setTimeout(() => {
-          setError('');
-        }, 5000);
-      });
-  }
-};
-
+        });
+    }
+  };
 
   useEffect(() => {
     if (selectedBus) {
@@ -93,9 +94,7 @@ function App() {
   };
 
   const handleSearchClick = () => {
-    // Assuming the search input is just used to set selectedBus and that you handle it directly
-    const searchValue = `bus${searchInput}`;
-    setSelectedBus(searchValue);
+    setSelectedBus(searchInput);
   };
 
   const handleRefreshClick = () => {
