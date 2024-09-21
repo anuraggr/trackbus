@@ -104,3 +104,22 @@
   margin-bottom: 10px;
   border-radius: 5px;
 }
+
+.footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  color: #333;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer p span {
+  color: red; /* Optional styling for heart emoji or text */
+}
+
