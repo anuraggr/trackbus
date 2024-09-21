@@ -99,8 +99,8 @@
 }
 
 .bus-info li {
-  background-color: #0d0d0d;
-  padding: 10px;
+ 
+  padding: 0px;
   margin-bottom: 10px;
   border-radius: 5px;
 }
