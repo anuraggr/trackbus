@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
@@ -177,14 +178,13 @@ function App() {
         <div className="right-side">
           <h2>Bus Information</h2>
           {busInfo ? (
-            <div className="bus-info">
+            <div className="bus-info card">
               <p><strong>Bus No:</strong> {busInfo.No}</p>
               <p><strong>From:</strong> {busInfo.From}</p>
               <p><strong>To:</strong> {busInfo.To}</p>
               <p><strong>Departure:</strong> {busInfo.Departure}</p>
               <p><strong>Bus Driver Contact:</strong> {busInfo.BusDriverContact}</p>
 
-              {/* Displaying the bus route below the bus information */}
               <h2>Route Stops:</h2>
               <ul>
                 {busInfo.Route.map((stop, idx) => (
