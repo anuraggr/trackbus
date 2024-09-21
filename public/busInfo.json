@@ -1,7 +1,6 @@
 {
-    "bus55": { "No":"55", "From": "Sitapura", "To": "Sindhi Camp", "Departure": "8 AM", "BusDriverContact": "6200970593" },
-    "bus2": { "No":"2", "From": "Bhakrota", "To": "Sindhi Camp", "Departure": "9 AM", "BusDriverContact": "6200970593" },
-    "bus3": { "No":"3", "From": "Jagathpura", "To": "Sindhi Camp", "Departure": "10 AM", "BusDriverContact": "6200970593" },
-    "55": { "No":55, "From": "Jagathpura", "To": "Sindhi Camp", "Departure": "10 AM", "BusDriverContact": "6200970593" }
+    "55": { "No":55, "From": "Jagathpura", "To": "Sindhi Camp", "Departure": "08 AM", "BusDriverContact": "6200970593" },
+    "56": { "No":56, "From": "Transport Nagar", "To": "Sindhi Camp", "Departure": "09 AM", "BusDriverContact": "6200970593" },
+    "73": { "No":55, "From": "Bhakrota", "To": "Sindhi Camp", "Departure": "10 AM", "BusDriverContact": "6200970593" }
 }
   
