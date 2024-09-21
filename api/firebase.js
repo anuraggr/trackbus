@@ -30,22 +30,22 @@ export const firebase = admin.apps.length
   : admin.initializeApp(config);
 
 export default async function handler(req, res) {
-  const { busNo } = req.query;  // Extract the bus number from the query parameters
+  const { busNumber } = req.query; // Extract busNumber from query params
+  if (!busNumber) {
+    return res.status(400).json({ error: 'Bus number is required' });
+  }
 
   try {
-    const db = admin.database();
-    const ref = db.ref(`locations/${busNo}`);  // Access the bus number in the database
-
-    // Query the database to get the entry for the specified bus number
-    const snapshot = await ref.once('value');
+    const snapshot = await db.ref(`/locations/${busNumber}`).once('value');
     const data = snapshot.val();
 
     if (data) {
-      res.status(200).json(data);  // Return the bus location data (latitude, longitude)
+      res.status(200).json(data);
     } else {
-      res.status(404).json({ message: `Bus number ${busNo} not found` });
+      res.status(404).json({ error: 'Bus not found' });
     }
   } catch (error) {
-    res.status(500).json({ error: 'Error retrieving data', details: error.message });
+    console.error('Error fetching bus location:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 }
