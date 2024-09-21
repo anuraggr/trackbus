@@ -189,12 +189,17 @@ function App() {
               <ul className="route-timeline">
   {busInfo.Route.map((stop, idx) => (
     <li key={idx} className="timeline-item">
-      <div className="circle"></div> {/* This will be the small circle marking the stop */}
+      {idx !== 0 && (
+        <div className="line-container">
+          <div className="circle"></div>
+          <div className="line"></div>
+          <div className="circle"></div>
+        </div>
+      )}
       <div className="stop-details">
         <strong>{stop.StopName}</strong>
         <span>{stop.Time}</span>
       </div>
-      {idx !== busInfo.Route.length - 1 && <div className="line"></div>} {/* Line between stops */}
     </li>
   ))}
 </ul>
