@@ -140,9 +140,13 @@ useEffect(() => {
   };
 
   const handleUserLoc = () => {
-  setLocationRequested(false); // Reset to false so that it asks for location again
-  getUserLocation(); // Always try to get location when the button is clicked
+  if (!userLocation) {
+    getUserLocation(); // Request location only if it's not already available
+  } else {
+    zoomToUserLocation(); // If already available, just zoom to it
+  }
 };
+
 
   return (
     <div className="container">
