@@ -116,21 +116,23 @@
 .timeline-item {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
-  position: relative;
   flex-direction: column;
   text-align: left;
+  position: relative;
+  margin-bottom: 30px;
 }
 
 .stop-details {
-  background-color: #333; /* Adjust color as per your theme */
   color: white;
-  padding: 10px;
-  border-radius: 5px;
-  min-width: 200px;
-  text-align: left;
-  margin-left: 15px;
-  position: relative;
+  background: none; /* Removed inner card effect */
+  font-size: 1.1rem;
+}
+
+.line-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .circle {
@@ -139,20 +141,19 @@
   background-color: white; /* Stop marker color */
   border-radius: 50%;
   position: relative;
-  margin-bottom: 10px;
 }
 
 .line {
   width: 2px;
-  height: 30px;
+  height: 20px;
   background-color: white;
-  margin-left: 5px;
-  position: relative;
+  margin: 5px 0;
 }
 
-.timeline-item:last-child .line {
-  display: none; /* No line after the last stop */
+.timeline-item:first-child .line-container {
+  display: none; /* No line or circles above the first stop */
 }
+
 
 
 
