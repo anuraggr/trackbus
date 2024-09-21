@@ -26,28 +26,30 @@ function App() {
   });
 
 
-  const getUserLocation = () => {
+const getUserLocation = () => {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
+    const watchId = navigator.geolocation.watchPosition(
       (position) => {
         setUserLocation({
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
-        setLocationRequested(true); // Successfully requested
-        zoomToUserLocation(); // Zoom to the user's location once it's available
+        setLocationRequested(true);
       },
       (error) => {
         console.error('Error getting location:', error);
-        setLocationRequested(true); // Still mark as requested even on error
-        alert('Location access was denied. Please enable location permissions and try again.');
+        setLocationRequested(true);
       }
     );
+
+    // Optional: You can store this `watchId` in state if you want to later stop watching the position
+    return watchId; 
   } else {
     console.error('Geolocation is not supported by this browser.');
-    setLocationRequested(true); // Mark as requested if geolocation isn't supported
+    setLocationRequested(true);
   }
 };
+
 
 
   const zoomToUserLocation = () => {
@@ -141,7 +143,8 @@ useEffect(() => {
 
   const handleUserLoc = () => {
   if (!userLocation) {
-    getUserLocation(); // Request location only if it's not already available
+    const watchId = getUserLocation(); // Starts continuous location tracking
+    // You can store this watchId if needed to stop tracking later
   } else {
     zoomToUserLocation(); // If already available, just zoom to it
   }
