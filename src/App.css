@@ -74,3 +74,32 @@
   width: 300px;
   margin: 0 auto;
 }
+
+.bus-info {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.bus-info h2 {
+  margin-bottom: 1rem;
+}
+
+.bus-info p {
+  margin: 0.5rem 0;
+}
+
+.bus-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.bus-info li {
+  background-color: #e9e9e9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
