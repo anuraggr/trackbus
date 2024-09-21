@@ -127,9 +127,9 @@
   background: none;
   font-size: 1.1rem;
   display: flex;
-  justify-content: space-between; /* Aligns items on both ends */
-  width: 100%; /* Ensures full width for space distribution */
-  padding: 0 10px; /* Adds padding on both sides */
+  justify-content: space-between; /* Keeps stop name and time on opposite ends */
+  width: 100%;
+  padding: 0 10px; /* You can reduce this if needed */
 }
 
 .stop-details strong {
@@ -139,7 +139,7 @@
 .line-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* Change to flex-start to align items to the left */
   margin-bottom: 10px;
 }
 
