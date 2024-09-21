@@ -185,7 +185,7 @@ function App() {
               <p><strong>Bus Driver Contact:</strong> {busInfo.BusDriverContact}</p>
 
               {/* Displaying the bus route below the bus information */}
-              <h3>Route Stops:</h3>
+              <h2>Route Stops:</h2>
               <ul>
                 {busInfo.Route.map((stop, idx) => (
                   <li key={idx}>
