@@ -5,7 +5,6 @@ import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet'; 
 import busIcon from './assets/busicon-1.png'; 
-import { Circle } from 'react-leaflet';
 
 function App() {
   const [searchInput, setSearchInput] = useState('');
