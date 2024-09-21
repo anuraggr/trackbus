@@ -199,6 +199,10 @@ function App() {
           )}
         </div>
       </div>
+
+    <footer className="footer">
+      <p>Made with ❤️ by Team Code Catalysts</p>
+    </footer>
     </div>
   );
 }
