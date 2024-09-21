@@ -47,7 +47,11 @@ function App() {
     }
   };
 
-
+  const zoomToUserLocation = () => {
+    if (mapRef.current && userLocation) {
+    mapRef.current.setView([userLocation.lat, userLocation.lng], 17); // Adjust zoom level as needed
+      }
+    };
   
 
   const fetchCoordinates = () => {
@@ -132,6 +136,10 @@ useEffect(() => {
     fetchCoordinates(); 
   };
 
+  const handleUserLoc = () => {
+    zoomToUserLocation();
+  };
+
   return (
     <div className="container">
       <div>
@@ -206,6 +214,7 @@ useEffect(() => {
               >
                 Refresh
               </button>
+
               <button
                 style={{
                   position: 'absolute',
@@ -219,9 +228,9 @@ useEffect(() => {
                   cursor: 'pointer',
                   zIndex: 1000
                 }}
-                onClick={handleRefreshClick}
+                onClick={handleUserLoc}
               >
-                Me
+                 Me
               </button>
             </div>
           )}
