@@ -192,8 +192,8 @@ useEffect(() => {
                 {userLocation && (
                   <Circle
                   center={[userLocation.lat, userLocation.lng]}
-                  radius={100} // Adjust the radius as needed
-                  pathOptions={{ color: 'blue', fillColor: 'blue', fillOpacity: 0.2 }} // Blue circle
+                  radius={5} // Adjust the radius as needed
+                  pathOptions={{ color: 'blue', fillColor: 'blue', fillOpacity: 0 }} // Blue circle
                   />
                 )}
 
