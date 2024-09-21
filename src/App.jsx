@@ -110,7 +110,7 @@ function App() {
         </a>
       </div>
 
-      <h1>Track Your Bus</h1>
+      <h1>Bus Mitra</h1>
 
       <div className="main-content">
         {/* Left Side: Bus Search and Map */}
