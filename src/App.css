@@ -116,8 +116,10 @@
 .timeline-item {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   position: relative;
+  flex-direction: column;
+  text-align: left;
 }
 
 .stop-details {
@@ -126,22 +128,32 @@
   padding: 10px;
   border-radius: 5px;
   min-width: 200px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: left;
+  margin-left: 15px;
+  position: relative;
+}
+
+.circle {
+  width: 12px;
+  height: 12px;
+  background-color: white; /* Stop marker color */
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 10px;
 }
 
 .line {
   width: 2px;
-  height: 40px;
+  height: 30px;
   background-color: white;
-  margin-left: 10px;
+  margin-left: 5px;
   position: relative;
 }
 
 .timeline-item:last-child .line {
   display: none; /* No line after the last stop */
 }
+
 
 
 
