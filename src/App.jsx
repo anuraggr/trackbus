@@ -11,7 +11,7 @@ function App() {
   const [busCoords, setBusCoords] = useState(null);
   const [busInfo, setBusInfo] = useState(null); 
   const [error, setError] = useState(''); 
-  const mapRef = useRef(); 
+  const mapRef = useRef(); // Reference to the map
   
   const busMarkerIcon = L.icon({
     iconUrl: busIcon,
@@ -123,7 +123,7 @@ function App() {
           {error && <p style={{ color: 'red' }}>{error}</p>}
 
           {busCoords  && (
-            <div className="map-container">
+            <div style={{ height: '500px', width: '100%', position: 'relative' }}>
               <MapContainer
                 center={[busCoords.lat, busCoords.lng]}
                 zoom={17}
@@ -153,7 +153,21 @@ function App() {
                 )}
               </MapContainer>
 
-              <button className="refresh-button" onClick={handleRefreshClick}>
+              <button
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  padding: '10px 20px',
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                  zIndex: 1000
+                }}
+                onClick={handleRefreshClick}
+              >
                 Refresh Coordinates
               </button>
             </div>
@@ -168,19 +182,20 @@ function App() {
               <p><strong>From:</strong> {busInfo.From}</p>
               <p><strong>To:</strong> {busInfo.To}</p>
               <p><strong>Departure:</strong> {busInfo.Departure}</p>
-              <p><strong>Bus Driver Contact:</strong> {busInfo.DriverContact}</p>
-              <p><strong>Route:</strong></p>
-              <ul className="route-list">
-                {busInfo.Route.map((stop, index) => (
-                  <li key={index}>
-                    <span className="route-stop">{stop.Stop}</span>
-                    <span className="route-time">{stop.ArrivalTime}</span>
+              <p><strong>Bus Driver Contact:</strong> {busInfo.BusDriverContact}</p>
+
+              {/* Displaying the bus route below the bus information */}
+              <h2>Route Stops:</h2>
+              <ul>
+                {busInfo.Route.map((stop, idx) => (
+                  <li key={idx}>
+                    <strong>{stop.StopName}</strong> - {stop.Time}
                   </li>
                 ))}
               </ul>
             </div>
           ) : (
-            <p>No bus selected yet</p>
+            <p>Search for a bus to see details.</p>
           )}
         </div>
       </div>
