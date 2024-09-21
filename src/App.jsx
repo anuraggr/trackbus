@@ -49,34 +49,37 @@ function App() {
 
   // Function to fetch bus info
   const fetchBusInfo = () => {
-    if (selectedBus) {
-      fetch('/busInfo.json')
-        .then((response) => response.json())
-        .then((data) => {
-          if (data[selectedBus]) {
-            setBusInfo(data[selectedBus]);
-            setError(''); 
-          } else {
-            setError('No such bus found');
-            setBusInfo(null); 
-            setBusCoords(null);
+  if (selectedBus) {
+    fetch('/busInfo.json')
+      .then((response) => response.json())
+      .then((data) => {
+        if (data[selectedBus]) {
+          setBusInfo(data[selectedBus]);
+          setBusCoords(null); // Reset coordinates if an invalid bus was previously searched
+          setError(''); 
+        } else {
+          setError('No such bus found');
+          setBusInfo(null); 
+          setBusCoords(null); // Make sure map is not shown if bus is invalid
 
-            setTimeout(() => {
-            setError('');
-          }, 5000);
-          }
-          
-        })
-        .catch((error) => {
-          console.error('Error fetching bus info:', error);
-          setError('Failed to fetch bus info');
+          // Keep the error for 5 seconds
           setTimeout(() => {
             setError('');
           }, 5000);
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching bus info:', error);
+        setError('Failed to fetch bus info');
 
-        });
-    }
-  };
+        // Keep the error for 5 seconds
+        setTimeout(() => {
+          setError('');
+        }, 5000);
+      });
+  }
+};
+
 
   useEffect(() => {
     if (selectedBus) {
