@@ -232,8 +232,8 @@ useEffect(() => {
               <button
                 style={{
                   position: 'absolute',
-                  top: '10px',
-                  right: '25px',
+                  bottom: '10px',
+                  left: '7px',
                   padding: '10px 20px',
                   backgroundColor: '#007bff',
                   color: 'white',
