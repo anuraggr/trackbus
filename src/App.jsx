@@ -198,13 +198,7 @@ useEffect(() => {
                   />
                 )}
 
-                {busCoords.accuracy && (
-                  <Circle
-                    center={[busCoords.lat, busCoords.lng]}
-                    radius={busCoords.accuracy}
-                    pathOptions={{ color: 'lightblue', fillColor: 'lightblue', fillOpacity: 0.2 }}
-                  />
-                )}
+                
               </MapContainer>
 
               <button
