@@ -186,13 +186,17 @@ function App() {
               <p><strong>Bus Driver Contact:</strong> {busInfo.BusDriverContact}</p>
 
               <h2>Route Stops:</h2>
-              <ul>
-                {busInfo.Route.map((stop, idx) => (
-                  <li key={idx}>
-                    <strong>{stop.StopName}</strong> - {stop.Time}
-                  </li>
-                ))}
-              </ul>
+              <ul className="route-timeline">
+  {busInfo.Route.map((stop, idx) => (
+    <li key={idx} className="timeline-item">
+      <div className="stop-details">
+        <strong>{stop.StopName}</strong>
+        <span>{stop.Time}</span>
+      </div>
+      {idx !== busInfo.Route.length - 1 && <div className="line"></div>} {/* Line between stops */}
+    </li>
+  ))}
+</ul>
             </div>
           ) : (
             <p>Search for a bus to see details.</p>
