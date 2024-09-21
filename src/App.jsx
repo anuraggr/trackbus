@@ -137,7 +137,11 @@ useEffect(() => {
   };
 
   const handleUserLoc = () => {
+    if (!locationRequested) {
+    getUserLocation();
+  } else {
     zoomToUserLocation();
+  }
   };
 
   return (
