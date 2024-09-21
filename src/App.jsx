@@ -204,7 +204,24 @@ useEffect(() => {
                 }}
                 onClick={handleRefreshClick}
               >
-                Refresh Coordinates
+                Refresh
+              </button>
+              <button
+                style={{
+                  position: 'absolute',
+                  bottom: '10px',
+                  left: '10px',
+                  padding: '10px 20px',
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                  zIndex: 1000
+                }}
+                onClick={handleRefreshClick}
+              >
+                Me
               </button>
             </div>
           )}
