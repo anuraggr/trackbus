@@ -12,8 +12,11 @@ function App() {
   const [busCoords, setBusCoords] = useState(null);
   const [busInfo, setBusInfo] = useState(null); 
   const [error, setError] = useState(''); 
-  const mapRef = useRef(); // Reference to the map
+  const mapRef = useRef(); // ref to map
+  
   const [userLocation, setUserLocation] = useState(null);
+  const [locationRequested, setLocationRequested] = useState(false);
+
   
   const busMarkerIcon = L.icon({
     iconUrl: busIcon,
@@ -21,6 +24,29 @@ function App() {
     iconAnchor: [19, 38], 
     popupAnchor: [0, -38] 
   });
+
+
+  const getUserLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+          setLocationRequested(true); 
+          },
+        (error) => {
+          console.error('Error getting location:', error);
+          setLocationRequested(true); // Still mark as requested even on error
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+      setLocationRequested(true); // Mark as requested if geolocation isn't supported
+    }
+  };
+
 
   
 
@@ -82,6 +108,11 @@ function App() {
   };
 
   useEffect(() => {
+
+    if (!locationRequested) {
+      getUserLocation(); // Only request if it hasn't been done yet
+    }
+  }, [locationRequested]);
     
     if (selectedBus) {
       fetchCoordinates(); 
