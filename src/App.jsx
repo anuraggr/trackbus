@@ -22,28 +22,6 @@ function App() {
     popupAnchor: [0, -38] 
   });
 
-  const getUserLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-          // You can also set this location in your map view
-          if (mapRef.current) {
-            mapRef.current.setView([position.coords.latitude, position.coords.longitude], 17);
-          }
-        },
-        (error) => {
-          console.error('Error getting location:', error);
-          // Handle error (e.g., show a message to the user)
-        }
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
-    }
-  };
   
 
   const fetchCoordinates = () => {
@@ -104,8 +82,6 @@ function App() {
   };
 
   useEffect(() => {
-    getUserLocation();
-}, []
     
     if (selectedBus) {
       fetchCoordinates(); 
