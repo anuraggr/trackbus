@@ -124,8 +124,16 @@
 
 .stop-details {
   color: white;
-  background: none; /* Removed inner card effect */
+  background: none;
   font-size: 1.1rem;
+  display: flex;
+  justify-content: space-between; /* Aligns items on both ends */
+  width: 100%; /* Ensures full width for space distribution */
+  padding: 0 10px; /* Adds padding on both sides */
+}
+
+.stop-details strong {
+  margin-right: 15px; /* Adds space between the stop name and the time */
 }
 
 .line-container {
