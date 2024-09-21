@@ -200,7 +200,7 @@ useEffect(() => {
                 </Marker>
 
                 {/* Circle for User Location */}
-                {userLocation && (
+                {userLocation && locationRequested &&(
                   <Circle
                   center={[userLocation.lat, userLocation.lng]}
                   radius={5} // Adjust the radius as needed
