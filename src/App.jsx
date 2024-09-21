@@ -60,6 +60,10 @@ function App() {
             setError('No such bus found');
             setBusInfo(null); 
             setBusCoords(null);
+
+            setTimeout(() => {
+              setError('');
+            }, 5000);
           }
           
         })
