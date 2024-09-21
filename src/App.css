@@ -139,7 +139,7 @@
 .line-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Change to flex-start to align items to the left */
+  align-items: center; /* Change to flex-start to align items to the left */
   margin-bottom: 10px;
   margin-right: auto;
 }
