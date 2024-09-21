@@ -53,8 +53,8 @@
 /* Style for the search button */
 .search-button {
   padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+  background-color: yellow;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
