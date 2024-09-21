@@ -200,7 +200,7 @@ useEffect(() => {
                 </Marker>
 
                 {/* Circle for User Location */}
-                {userLocation && locationRequested &&(
+                {userLocation && (
                   <Circle
                   center={[userLocation.lat, userLocation.lng]}
                   radius={5} // Adjust the radius as needed
@@ -232,8 +232,8 @@ useEffect(() => {
               <button
                 style={{
                   position: 'absolute',
-                  bottom: '10px',
-                  left: '10px',
+                  top: '10px',
+                  right: '25px',
                   padding: '10px 20px',
                   backgroundColor: '#007bff',
                   color: 'white',
