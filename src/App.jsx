@@ -1,4 +1,3 @@
-// App.jsx
 import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
@@ -21,18 +20,17 @@ function App() {
     popupAnchor: [0, -38] 
   });
 
-  // Function to fetch coordinates from serverless function for specific bus number
   const fetchCoordinates = () => {
     if (!selectedBus) return;
 
-    fetch(`/api/firebase?busNumber=${selectedBus}`) // Send bus number as query param
+    fetch(`/api/firebase?busNumber=${selectedBus}`)
       .then((response) => response.json())
       .then((data) => {
         if (data && data.latitude && data.longitude) {
           setBusCoords({
             lat: data.latitude,
             lng: data.longitude,
-            accuracy: data.accuracy || 10, // Set default accuracy if not provided
+            accuracy: data.accuracy || 10,
           });
           setError(''); 
 
@@ -50,7 +48,6 @@ function App() {
       });
   };
 
-  // Function to fetch bus info
   const fetchBusInfo = () => {
     if (selectedBus) {
       fetch('/busInfo.json')
@@ -58,14 +55,13 @@ function App() {
         .then((data) => {
           if (data[selectedBus]) {
             setBusInfo(data[selectedBus]);
-            setBusCoords(null); // Reset coordinates if an invalid bus was previously searched
+            setBusCoords(null); 
             setError(''); 
           } else {
             setError('No such bus found');
             setBusInfo(null); 
-            setBusCoords(null); // Make sure map is not shown if bus is invalid
+            setBusCoords(null);
 
-            // Keep the error for 5 seconds
             setTimeout(() => {
               setError('');
             }, 5000);
@@ -74,8 +70,6 @@ function App() {
         .catch((error) => {
           console.error('Error fetching bus info:', error);
           setError('Failed to fetch bus info');
-
-          // Keep the error for 5 seconds
           setTimeout(() => {
             setError('');
           }, 5000);
@@ -113,7 +107,6 @@ function App() {
       <h1>Bus Mitra</h1>
 
       <div className="main-content">
-        {/* Left Side: Bus Search and Map */}
         <div className="left-side">
           <div className="search-container">
             <input
@@ -181,7 +174,6 @@ function App() {
           )}
         </div>
 
-        {/* Right Side: Bus Information */}
         <div className="right-side">
           <h2>Bus Information</h2>
           {busInfo ? (
@@ -191,6 +183,16 @@ function App() {
               <p><strong>To:</strong> {busInfo.To}</p>
               <p><strong>Departure:</strong> {busInfo.Departure}</p>
               <p><strong>Bus Driver Contact:</strong> {busInfo.BusDriverContact}</p>
+
+              {/* Displaying the bus route below the bus information */}
+              <h3>Route Stops:</h3>
+              <ul>
+                {busInfo.Route.map((stop, idx) => (
+                  <li key={idx}>
+                    <strong>{stop.StopName}</strong> - {stop.Time}
+                  </li>
+                ))}
+              </ul>
             </div>
           ) : (
             <p>Search for a bus to see details.</p>
