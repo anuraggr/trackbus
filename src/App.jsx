@@ -159,7 +159,7 @@ function App() {
         </a>
       </div>
 
-      <h1>Bus Mitra</h1>
+      <h1>TheBusMitra</h1>
 
       <div className="main-content">
         <div className="left-side">
