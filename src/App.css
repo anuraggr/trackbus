@@ -43,7 +43,7 @@
 
 
 
-/* Style for the search bar */
+
 .search-bar {
   width: 100%;
   padding: 10px;
@@ -54,7 +54,7 @@
   box-sizing: border-box;
 }
 
-/* Style for the search button */
+
 .search-button {
   padding: 10px 20px;
   background-color: yellow;
@@ -68,7 +68,7 @@
 }
 
 .search-button:hover {
-  background-color: #0056b3; /* Darken the button on hover */
+  background-color: #0056b3; 
 }
 
 .search-container {
@@ -131,19 +131,19 @@
   background: none;
   font-size: 1.1rem;
   display: flex;
-  justify-content: space-between; /* Keeps stop name and time on opposite ends */
+  justify-content: space-between; 
   width: 100%;
-  padding: 0 10px; /* You can reduce this if needed */
+  padding: 0 10px; 
 }
 
 .stop-details strong {
-  margin-right: 15px; /* Adds space between the stop name and the time */
+  margin-right: 15px; 
 }
 
 .line-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Change to flex-start to align items to the left */
+  align-items: center; 
   margin-bottom: 1px;
   margin-right: auto;
 }
@@ -151,7 +151,7 @@
 .circle {
   width: 12px;
   height: 12px;
-  background-color: white; /* Stop marker color */
+  background-color: white; 
   border-radius: 50%;
   position: relative;
 }
@@ -164,7 +164,7 @@
 }
 
 .timeline-item:first-child .line-container {
-  display: none; /* No line or circles above the first stop */
+  display: none; 
 }
 
 
