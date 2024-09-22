@@ -6,10 +6,15 @@
     "Departure": "8 AM",
     "BusDriverContact": "6200970593",
     "Route": [
-      { "StopName": "Sitapura", "Time": "8:00 AM" },
-      { "StopName": "Pratap Nagar", "Time": "8:15 AM" },
-      { "StopName": "Gopalpura", "Time": "8:30 AM" },
-      { "StopName": "Sindhi Camp", "Time": "8:45 AM" }
+      { "StopName": "Mori Gate Terminal ", "Time": "8:00 AM" },
+      { "StopName": "Red Fort", "Time": "8:15 AM" },
+      { "StopName": "Delhi Gate", "Time": "8:30 AM" },
+      { "StopName": "Golf Club / Sunder Nagar", "Time": "8:55 AM" },
+      { "StopName": "Police Station Nizamuddin", "Time": "9:10 AM" },
+      { "StopName": "Ashram", "Time": "9:20 AM" },
+      { "StopName": "Ishwar Nagar", "Time": "9:35 AM" },
+      { "StopName": "Okhla Tank", "Time": "9:50 AM" },
+      { "StopName": "Badarpur Border ", "Time": "10:00 AM" },
     ]
   },
   "56": {
