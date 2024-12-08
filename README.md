@@ -1,4 +1,4 @@
-For for SIH 2024
+Made for SIH 2024
 
 
 # React + Vite
